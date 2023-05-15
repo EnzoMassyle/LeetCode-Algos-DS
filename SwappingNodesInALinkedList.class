@@ -21,6 +21,10 @@ High level Solution:
     2. Get the values at the Kth node from the beginning and the Kth node from the end
     3. Swap values 
 
+
+TC: O(N)
+SC: O(1)
+
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
