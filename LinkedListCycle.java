@@ -17,12 +17,12 @@ There is a cycle in a linked list if there is some node in the list that can be 
 Return true if there is a cycle in the linked list. Otherwise, return false.
 
 High level solution: 
-    Set method:
+    Set method: TC O(N),SC O(N)
     - create set to hold nodes from linked list
     - add each node from the linked list to the set
     - if the current node already exists in the set, there is a cycle
 
-    Two pointer method:
+    Two pointer method: TC O(N), SC O(1)
     - Have two pointers, one fast point and one slow pointer
     - If there is a cycle in the list, the fast pointer will catch up to the slow pointer 
     - If either pointer becomes null, we know a cycle doesn't exist
