@@ -97,29 +97,19 @@ class MyHashSet {
     }
 
     BST container;
-    int numCalls;
     public MyHashSet() {
         container = new BST();
-        numCalls = 0;
     }
     
     public void add(int key) {
         container.root = container.add(container.root, key);
-        numCalls++;
     }
     
     public void remove(int key) {
         container.remove(container.root, key);
-        numCalls++;
     }
     
     public boolean contains(int key) {
-       // container.toString(container.root);
-        if (numCalls == 71) {
-            System.out.println(key);
-            System.out.println(container.contains(container.root, key));
-        }
-        numCalls++;
         return container.contains(container.root, key);
 
     }
