@@ -4,26 +4,34 @@ Return the smallest character in letters that is lexicographically greater than 
 
 
 High Level Sol: 
-    - initialize the initial greatest letter and initalial difference between this and the target
-    - loop over the rest of letters, updating the smallest letter greater than target
+    - Check edge case where there are no characters where it is > target
+    - Given letters is sorted in non-decreasing order, perform a binary search to find smallest character
 
-TC: O(N), SC: O(1)
+TC: O(LogN), SC: O(1)
  */
 
 
 class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
-        char smallestLetter = letters[0];
-        int minDif;
-        if (letters[0] - target > 0) minDif = letters[0] - target;
-        else minDif = 999;
-        for (int i = 1; i < letters.length; i++) {
-            int curDif = letters[i] - target;
-            if (curDif > 0 && curDif < minDif) {
-                minDif = curDif;
-                smallestLetter = letters[i];
+        
+        if (letters[letters.length - 1] <= target) return letters[0]; // there are no elements in letters > target
+        
+        int start = 0;
+        int end = letters.length - 1;
+        int mid = (end + start) / 2;
+        int minDif = 999;
+        char greatestLetter = letters[mid];
+
+        while (start <= end) {
+            int curDif = letters[mid] - target;
+            if (curDif <= 0) start = mid + 1;
+            else if (curDif < minDif)  {
+                greatestLetter = letters[mid];
+                end = mid - 1;
             }
+            mid = (end + start) / 2;
         }
-        return smallestLetter;
+
+        return greatestLetter;
     }
 }
