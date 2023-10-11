@@ -1,0 +1,40 @@
+'''
+Prompt: Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+You must write an algorithm that runs in O(log n) time.
+
+High level sol: 
+    - since the sorted array is rotated, there are 2 sorted parts of the array
+    - Perform binary search: 
+        > if at any point, the elements in the search space is completly sorted return first element
+        > if middle element is part of the left sorted portion, search on the right of mid
+            * nothing to the left can be part of the solution
+        > if middle element is part of right sorted portion, search on left of mid
+            * nothing to the right can be part of the solution
+
+TC: O(LogN), SC: O(1)
+'''
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left = 0
+        right = len(nums) - 1
+        minEl = nums[0]
+
+        while left <= right:
+            # calculate middle
+            mid = (left + right) // 2
+
+            # Keep track of min element seen so far
+            if nums[left] < nums[right]:
+                return min(nums[left], minEl)
+
+            minEl = min(minEl, nums[mid])
+
+            # check if the middle element is in the left sorted portion
+            if nums[mid] >= nums[left]: 
+                left = mid + 1
+            else: 
+                right = mid - 1
+
+        return minEl
+        
