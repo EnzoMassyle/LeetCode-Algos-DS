@@ -1,8 +1,9 @@
 '''
 Sub-problem f(i,j), the mininum sum that ends at triangle[i][j]
 Recurrence relation, f(i,j) = min(f(i-1,j-1), f(i-1,j)) + trangle[i][j]
-Base case:  f(0,0) = triangle[0][0]
+Base case(s):  f(0,0) = triangle[0][0]
             f(i,0) = f(i-1,0) + triangle[i][0]
+            f(i-1,i-1) = f(i-1,i-1) + triangle[i-1][i-1]
 
 TC: O(bh), SC: O(bh) b = base , h = height    
 '''
@@ -28,5 +29,14 @@ class Solution:
                     dp[r][c] = min(dp[r-1][c-1], dp[r-1][c]) + el
                     
         return min(dp[rows-1])
+
+
+
+
+
+        
+
+
+
 
         
